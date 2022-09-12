@@ -16,7 +16,7 @@ import Divider from "@mui/material/Divider";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import ListItemText from "@mui/material/ListItemText";
-import React from "react";
+import { Button } from "@mui/material";
 
 const Resources = () => {
   let { category } = useParams();
@@ -50,22 +50,14 @@ const Resources = () => {
               <ListItemAvatar>
                 <Avatar>{name[0].toLocaleUpperCase()}</Avatar>
               </ListItemAvatar>
-              <Link to={`/resources/${category}/${index}`}>
-                <ListItemText
-                  primary={name}
-                  secondary={
-                    <React.Fragment>
-                      <Typography
-                        sx={{ display: 'inline' }}
-                        component="span"
-                        variant="body2"
-                        color="text.primary"
-                      >
-                        Click for more info
-                      </Typography>
-                    </React.Fragment>
-                  }
-                /></Link>
+              <ListItemText
+                primary={name}
+                secondary={
+                  <Link style={{ textDecoration: "none" }} to={`/resources/${category}/${index}`} >
+                    <Button variant="outlined" sx={{ textTransform: "capitalize", mt: 0.5 }}>Click for more info</Button>
+                  </Link>
+                }
+              />
             </ListItem>
               <Divider variant="inset" component="li" />
             </Box>

@@ -11,7 +11,7 @@ import InputBase from '@mui/material/InputBase';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SearchIcon from '@mui/icons-material/Search';
 import BreadcrumbsComp from './breadcrumbs';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@mui/material';
 
 const Search = styled('div')(({ theme }) => ({
@@ -62,8 +62,14 @@ const SearchAppBar = () => {
   const location = useLocation();
 
   const [searchPhrase, setSearchPhrase] = useState("");
+  const [contentCatSelectPage, setContentCatSelectPage] = useState(false);
   const searchPath = location.pathname.replace(/\/[0-9]/, "");
-  const contentCatSelectPage = location.pathname === "/resources"
+
+  useEffect(() => {
+    setSearchPhrase("");
+    setContentCatSelectPage(location.pathname === "/resources");
+  },
+    [location.pathname]);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
